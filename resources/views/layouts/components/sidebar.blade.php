@@ -14,11 +14,18 @@
             <li class=""><a href="#" class="nav-link"><i class="fas fa-clipboard-check"></i><span>Change Request</span></a></li>
             <li class=""><a href="#" class="nav-link"><i class="fas fa-bug"></i><span>Bug Fixing</span></a></li>
             <li class=""><a href="#" class="nav-link"><i class="fas fa-calendar-day"></i><span>Daily Activity</span></a></li>
+
+            <li class="menu-header">Sales Menu</li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-shapes"></i><span>Demo Request</span></a></li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-cash-register"></i><span>Order Request</span></a></li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-check-circle"></i><span>Order Validation</span></a></li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-print"></i><span>Invoice</span></a></li>
             
             <li class="menu-header">Report</li>
             <li class=""><a href="#" class="nav-link"><i class="fas fa-book"></i><span>Report Change R.</span></a></li>
             <li class=""><a href="#" class="nav-link"><i class="fas fa-book"></i><span>Report Bug Fix</span></a></li>
             <li class=""><a href="#" class="nav-link"><i class="fas fa-book"></i><span>Report Daily A.</span></a></li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-book"></i><span>Report Order</span></a></li>
 
             <li class="menu-header">Settings</li>
             
@@ -36,7 +43,7 @@
             <li class="menu-header">Master Data</li>
 
             <li class=""><a href="#" class="nav-link"><i class="fas fa-calendar-week"></i><span>Master Day</span></a></li>
-
+            
             <li class="nav-item dropdown">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-dice-d6"></i> <span>Apps Control</span></a>
               <ul class="dropdown-menu">
@@ -45,6 +52,8 @@
                 <li><a class="nav-link" href="#">Modules Menu</a></li>
               </ul>
             </li>
-        @show
+
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-ticket-alt"></i><span>Master Voucher</span></a></li>
+            @show
       </ul>
   </aside>
