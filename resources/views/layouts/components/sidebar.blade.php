@@ -9,6 +9,16 @@
         @section('sidebar')
             <li class="menu-header">Dashboard</li>
             <li class=""><a href="#" class="nav-link"><i class="fas fa-signal"></i><span>Dashboard</span></a></li>
+            
+            <li class="menu-header">Portal Menu</li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-clipboard-check"></i><span>Change Request</span></a></li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-bug"></i><span>Bug Fixing</span></a></li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-calendar-day"></i><span>Daily Activity</span></a></li>
+            
+            <li class="menu-header">Report</li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-book"></i><span>Report Change R.</span></a></li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-book"></i><span>Report Bug Fix</span></a></li>
+            <li class=""><a href="#" class="nav-link"><i class="fas fa-book"></i><span>Report Daily A.</span></a></li>
 
             <li class="menu-header">Settings</li>
             
