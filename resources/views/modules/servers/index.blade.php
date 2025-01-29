@@ -130,7 +130,7 @@
                     tr.append('<td>' + value.name + '</td>');
                     // tr.append('<td>' + value.progress + '</td>');
                     // tr.append('<td>' + value.created_at + '</td>');
-                    tr.append('<td><button class="btn btn-sm btn-info update">Edit</button> <button class="btn btn-sm btn-danger delete">Delete</button></td>');
+                    tr.append('<td><button class="btn btn-sm btn-primary update text-warning"><i class="fas fa-edit"></i></button> <button class="btn btn-sm btn-primary delete text-danger"><i class="fas fa-trash"></i></button></td>');
                     tbody.append(tr);
                 });
             },
