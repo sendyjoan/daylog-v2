@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
 
     // Servers Routes
     Route::get('/servers', [ServersController::class, 'index'])->name('servers.index');
+    Route::get('/servers-list', [ServersController::class, 'list'])->name('servers.list');
+    Route::post('/servers', [ServersController::class, 'store'])->name('servers.store');
 });
 
 // Route::get('forget', function () {
