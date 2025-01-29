@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/servers', [ServersController::class, 'index'])->name('servers.index');
     Route::get('/servers-list', [ServersController::class, 'list'])->name('servers.list');
     Route::post('/servers', [ServersController::class, 'store'])->name('servers.store');
+    Route::post('/servers-update', [ServersController::class, 'update'])->name('servers.update');
+    Route::delete('/servers', [ServersController::class, 'destroy'])->name('servers.delete');
 });
 
 // Route::get('forget', function () {

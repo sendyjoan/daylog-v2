@@ -73,6 +73,32 @@
             </div>
         </div>
     </div>
+    <!-- Update Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Update Server App</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="update-server-app-form">
+                        <input type="hidden" id="update-server-id" name="id">
+                        <div class="form-group">
+                            <label for="update-server-name">Server Name</label>
+                            <input type="text" class="form-control" id="update-server-name" name="name" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="update-server-app">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <script>
     function showLoading() {
@@ -104,7 +130,7 @@
                     tr.append('<td>' + value.name + '</td>');
                     // tr.append('<td>' + value.progress + '</td>');
                     // tr.append('<td>' + value.created_at + '</td>');
-                    tr.append('<td><button class="btn btn-sm btn-info">Edit</button> <button class="btn btn-sm btn-danger">Delete</button></td>');
+                    tr.append('<td><button class="btn btn-sm btn-info update">Edit</button> <button class="btn btn-sm btn-danger delete">Delete</button></td>');
                     tbody.append(tr);
                 });
             },
@@ -133,6 +159,11 @@
                 data: formData + "&_token={{ csrf_token() }}",
                 success: function(response) {
                     $('#createModal').modal('hide');
+                    Swal.fire(
+                        'Success!',
+                        'Data has been saved',
+                        'success'
+                    );
                     getServerApps();
                 },
                 error: function(xhr) {
@@ -142,5 +173,71 @@
             console.log(formData);
         });
     })
+
+    $(document).on('click', '.update', function() {
+            let row = $(this).closest('tr');
+            let id = row.find('td:eq(0)').text();
+            let name = row.find('td:eq(1)').text();
+            $('#update-server-id').val(id);
+            $('#update-server-name').val(name);
+            $('#updateModal').modal('show');
+        });
+
+        $('#update-server-app').click(function() {
+            let formData = $('#update-server-app-form').serialize();
+            $.ajax({
+                url: "{{ route('servers.update') }}",
+                type: "POST",
+                data: formData + "&_token={{ csrf_token() }}",
+                success: function(response) {
+                    $('#updateModal').modal('hide');
+                    Swal.fire(
+                        'Success!',
+                        'Data has been updated',
+                        'success'
+                    );
+                    getServerApps();
+                },
+                error: function(xhr) {
+                    console.log(xhr);
+                }
+            });
+        });
+
+    $(document).on('click', '.delete', function() {
+        let row = $(this).closest('tr');
+        let id = row.find('td:eq(0)').text();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{{ route('servers.delete') }}",
+                    type: "DELETE",
+                    data: {
+                        id: id,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        getServerApps();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        );
+                    },
+                    error: function(xhr) {
+                        console.log(xhr);
+                    }
+                });
+            }
+        });
+    });
 </script>
 @endsection

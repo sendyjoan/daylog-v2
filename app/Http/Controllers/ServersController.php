@@ -55,4 +55,56 @@ class ServersController extends Controller
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'id' => 'required|exists:servers,code',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $server = Servers::where('code', $request->input('id'))->first();
+            $server->name = $request->input('name');
+            $server->save();
+            
+            if ($server) {
+                DB::commit();
+                return response()->json(['message' => 'Server updated successfully']);
+            }else{
+                DB::rollBack();
+                return response()->json(['message' => 'Failed to update server'], 500);
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function destroy(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:servers,code',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $server = Servers::where('code', $request->input('id'))->first();
+            $server->delete();
+            
+            if ($server) {
+                DB::commit();
+                return response()->json(['message' => 'Server deleted successfully']);
+            }else{
+                DB::rollBack();
+                return response()->json(['message' => 'Failed to delete server'], 500);
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
 }

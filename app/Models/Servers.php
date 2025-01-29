@@ -15,7 +15,7 @@ class Servers extends Model
     public static function createCode()
     {
         $ymd = date('Ymd');
-        $lastServer = self::where('code', 'like', $ymd . '%')->orderBy('code', 'desc')->first();
+        $lastServer = self::withTrashed()->where('code', 'like', $ymd . '%')->orderBy('code', 'desc')->first();
         if (!$lastServer) {
             return $ymd . '0001';
         }else{
