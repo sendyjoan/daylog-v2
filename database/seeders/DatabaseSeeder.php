@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\ServersSeeder;
 use Database\Seeders\UserAndPermissionSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             UserAndPermissionSeeder::class,
+            ServersSeeder::class,
         ]);
     }
 }
