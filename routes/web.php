@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServersController;
 
@@ -35,6 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/servers', [ServersController::class, 'store'])->name('servers.store');
     Route::post('/servers-update', [ServersController::class, 'update'])->name('servers.update');
     Route::delete('/servers', [ServersController::class, 'destroy'])->name('servers.delete');
+
+    // Modules Routes
+    Route::get('/modules', [ModuleController::class, 'index'])->name('modules.index');
 });
 
 // Route::get('forget', function () {

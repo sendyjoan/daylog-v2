@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Module;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\ModuleSeeder;
 use Database\Seeders\ServersSeeder;
 use Database\Seeders\UserAndPermissionSeeder;
 
@@ -27,6 +29,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             UserAndPermissionSeeder::class,
             ServersSeeder::class,
+            ModuleSeeder::class,
         ]);
     }
 }

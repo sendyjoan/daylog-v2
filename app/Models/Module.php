@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\Module;
+use App\Models\Servers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class Servers extends Model
+class Module extends Model
 {
-    use SoftDeletes, HasUuids;
+    use HasUuids, SoftDeletes;
 
-    protected $fillable = ['code', 'name'];
+    protected $fillable = ['name', 'server_id'];
 
     public static function createCode()
     {
@@ -28,8 +28,8 @@ class Servers extends Model
         }
     }
 
-    public function modules()
+    public function server()
     {
-        return $this->hasMany(Module::class);
+        return $this->belongsTo(Servers::class);
     }
 }
